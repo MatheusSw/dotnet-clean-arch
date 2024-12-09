@@ -1,4 +1,4 @@
-﻿using CleanArch.Application.Models.Weather;
+﻿using CleanArch.Domain.Entities.Weather;
 
 namespace CleanArch.Application.Services;
 
@@ -9,5 +9,5 @@ public interface IWeatherService
     /// </summary>
     /// <param name="location">Location for weather to be fetched</param>
     /// <returns>Information about the current weather at the given location</returns>
-    public Task<CurrentWeather?> GetWeatherAsync(string location);
+    public Task<Weather?> GetWeatherAsync(string location);
 }

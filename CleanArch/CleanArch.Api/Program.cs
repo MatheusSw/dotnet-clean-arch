@@ -1,5 +1,6 @@
 using CleanArch.Extensions;
 using CleanArch.Infra.Extensions;
+using Prometheus;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = new ConfigurationBuilder()
@@ -18,5 +19,7 @@ builder.Services.AddControllers();
 var app = builder.Build();
 
 app.MapControllers();
+
+app.MapMetrics();
 
 app.Run();

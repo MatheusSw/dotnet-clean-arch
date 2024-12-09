@@ -1,5 +1,5 @@
-﻿using CleanArch.Application.Models.Weather;
-using CleanArch.Application.Services;
+﻿using CleanArch.Application.Services;
+using CleanArch.Domain.Entities.Weather;
 using CleanArch.Infra.Repositories.WeatherStack;
 using Serilog;
 
@@ -7,7 +7,7 @@ namespace CleanArch.Infra.Services;
 
 public class WeatherService(IWeatherStackRepository weatherRepository, ILogger logger) : IWeatherService
 {
-    public async Task<CurrentWeather?> GetWeatherAsync(string location)
+    public async Task<Weather?> GetWeatherAsync(string location)
     {
         var response = await weatherRepository.FetchWeather(location);
         if (response?.Current is null || response.Location is null || response.Request is null)
@@ -19,7 +19,7 @@ public class WeatherService(IWeatherStackRepository weatherRepository, ILogger l
             return default;
         }
 
-        var currentWeather = new CurrentWeather
+        var currentWeather = new Weather
         {
             Country = response.Location.Country,
             Region = response.Location.Region,

@@ -1,6 +1,6 @@
-﻿namespace CleanArch.Application.Models.Weather;
+﻿namespace CleanArch.Domain.Entities.Weather;
 
-public class CurrentWeather
+public class Weather
 {
     public required string Country { get; set; }
 
