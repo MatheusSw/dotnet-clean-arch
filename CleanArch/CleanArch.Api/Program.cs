@@ -20,6 +20,8 @@ var app = builder.Build();
 
 app.MapControllers();
 
+app.UseHttpMetrics();
+
 app.MapMetrics();
 
 app.Run();

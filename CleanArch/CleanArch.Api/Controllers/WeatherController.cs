@@ -1,4 +1,5 @@
 ﻿using CleanArch.Application.Services;
+using CleanArch.Domain.Entities.Weather;
 using Microsoft.AspNetCore.Mvc;
 using ILogger = Serilog.ILogger;
 
@@ -8,8 +9,16 @@ namespace CleanArch.Controllers;
 [Route("api")]
 public class WeatherController(IWeatherService weatherService, ILogger logger) : ControllerBase
 {
+    /// <summary>
+    /// Returns the current weather for the given location
+    /// <remarks>For the sake of repetition the controller returns the domain entity directly, however it could be an
+    /// API specific model; say that the consumers actually want the weather description as ints instead of string
+    /// that'd call for an api-layer specific model</remarks>
+    /// </summary>
+    /// <param name="location">The location for the weather to be fetched</param>
+    /// <returns>The Weather entity</returns>
     [HttpGet("weathers")]
-    public async Task<IActionResult> Get([FromQuery] string location)
+    public async Task<ActionResult<Weather>> Get([FromQuery] string location)
     {
         try
         {
