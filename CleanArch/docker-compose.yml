@@ -1,6 +1,22 @@
 ﻿services:
   cleanarch:
-    image: cleanarch
-    build:
-      context: .
-      dockerfile: CleanArch/Dockerfile
+    image: "cleanarch"
+    pull_policy: build
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - WEATHER_STACK_API_KEY=${WEATHER_STACK_API_KEY}
+    build: .
+    ports:
+      - "8080:8080"
+  prometheus:
+    image: "prom/prometheus"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus'
+volumes:
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
