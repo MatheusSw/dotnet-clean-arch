@@ -1,0 +1,6 @@
+﻿services:
+  cleanarch:
+    image: cleanarch
+    build:
+      context: .
+      dockerfile: CleanArch/Dockerfile
